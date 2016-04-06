@@ -1,0 +1,116 @@
+/**
+ * A simple theme for reveal.js presentations, similar
+ * to the default theme. The accent color is darkblue.
+ *
+ * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Custom mixins
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic|Noto+Serif:400,400italic,700,700italic|Droid+Sans+Mono:400,700);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,600,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,200,300,500,600,700);
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Raleway', sans-serif;
+$mainColor: #000;
+$headingFont: "Open Sans", "DejaVu Sans", sans-serif;
+$headingFontWeight: 500;
+$headingColor: rgba(24, 154, 203, 1);
+$headingTextShadow: none;
+$headingTextTransform: capitalize;
+$backgroundColor: #fffffb;
+$slideNumFontSize: 1.1;
+$footerFontSize: 1;
+$slideNumLeftPosition: 50%;
+$linkColor: darken( $headingColor, 10% );
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: rgba(0, 0, 0, 0.99);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// Override css classes
+.reveal {
+	text-rendering: optimizeLegibility;
+}
+
+.crg {
+	color: $headingColor;
+}
+
+.crg-bg {
+	background-color: lighten($headingColor, 80%);
+}
+
+.reveal span.footer {
+	@include font-size($footerFontSize);
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+	font-variant: small-caps;
+}
+
+.reveal section img {
+	margin: 0px;
+	background: none;
+	border: 0px;
+
+	box-shadow: none;
+}
+
+.imageblock.logo {
+	margin: 1em 0px;
+}
+
+.reveal .slides {
+	background-image: url("assets/MASTER_BANNER_1900_X_388_PX.jpg");
+	background-repeat: no-repeat;
+	background-position: top;
+}
+
+.reveal .slides section .fragment.highlight-blue.visible {
+	color: $headingColor;
+}
+
+.reveal .slides section .fragment.highlight-current-blue.current-fragment {
+	color: $headingColor;
+}
+
+.reveal .slide-number {
+	color: $headingColor;
+	@include font-size($slideNumFontSize);
+	font-weight: $headingFontWeight;
+	font-family: $headingFont;
+	left: $slideNumLeftPosition;
+	background-color: transparent;
+}
+
+.reveal pre {
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+.reveal code {
+	font-family: "Source Code Pro", monospace;
+	/*background-color: #f7f7f8;*/
+}
