@@ -2575,10 +2575,36 @@
 					value.push( indexh + 1 );
 					if( isVerticalSlide() ) value.push( '.', indexv + 1 );
 			}
-
-			dom.slideNumber.innerHTML = formatSlideNumber( value[0], value[1], value[2] );
+			if ( config.skipSlideNumber ) {
+				value[0]-=1;
+				value[2]-=1;
+			}
+			if ( config.skipSlideNumber && skipSlideNumber(config.skipSlideNumber) ){
+				dom.slideNumber.innerHTML = "";
+			} else {
+				dom.slideNumber.innerHTML = formatSlideNumber( value[0], value[1], value[2] );
+			}
 		}
 
+	}
+
+	/**
+	 * Skip numbering for specific slides
+	 */
+	function skipSlideNumber( list, slide ) {
+
+		// Default to the current slide
+		slide = slide || currentSlide;
+
+		var nlist = list.map(function(s) {
+			return (s == "last" ? getTotalSlides()-1 : s)
+		});
+
+		if ( slide ) {
+			var i = getIndices(slide).h
+		}
+
+		return (nlist.indexOf(i) > -1)
 	}
 
 	/**
